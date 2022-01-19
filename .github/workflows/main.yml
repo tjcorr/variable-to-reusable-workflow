@@ -20,6 +20,6 @@ jobs:
       
   reuse:
     needs: [ main ]
-    uses: ./.github/workflows/reusable.yml@main
+    uses: tjcorr/variable-to-reusable-workflow/.github/workflows/reusable.yml@main
     with:
       param: 5.0.x
