@@ -22,4 +22,4 @@ jobs:
     needs: [ main ]
     uses: tjcorr/variable-to-reusable-workflow/.github/workflows/reusable.yml@main
     with:
-      param: 5.0.x
+      param: ${{env.DOTNET_VERSION}}
