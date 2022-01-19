@@ -41,7 +41,8 @@ jobs:
     - name: mkdir
       run: mkdir 5.0.x
     - name: pwd
-      working-directory: 5.0.x
+      working-directory: ${{env.DOTNET_VERSION}}
+      #working-directory: 5.0.x
       run: pwd
     
   reuse:  
@@ -49,4 +50,4 @@ jobs:
     uses: tjcorr/variable-to-reusable-workflow/.github/workflows/reusable.yml@main
     with:
       param: ${{needs.main.outputs.dot-version}}
-      #param: ${{env.DOTNET_VERSION}}
+      #param: ${{env.DOTNET_VERSION}} #doesn't work here
