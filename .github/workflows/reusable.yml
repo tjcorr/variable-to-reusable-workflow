@@ -1,0 +1,16 @@
+name: Reusable
+
+on:
+  workflow_call:
+    inputs:
+      param:
+        requires: true
+        type: string
+ 
+ jobs:
+   test:
+     runs-on: ubuntu-latest
+     
+     steps:
+     - name: output
+       run: echo Resuable workflow was passed in ${{ inputs.param }}
