@@ -36,7 +36,7 @@ jobs:
 
   cd:
     needs: []
-    runs-on: ubuntu
+    runs-on: ubuntu-latest
     steps:
     - name: mkdir
       run: mkdir 5.0.x
