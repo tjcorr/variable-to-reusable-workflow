@@ -1,0 +1,25 @@
+name: main
+
+on:
+  push: 
+    branches: [ main ] 
+   
+env:
+  DOTNET_VERSION: 5.0.x
+  
+jobs:
+  main:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: checkout
+      uses: actions/checkout@v2
+      
+    - name: print
+      run: echo DOTNET_VERSION=${{env.DOTNET_VERSION}}
+      
+  reuse:
+    needs: [ main ]
+    uses: ./.github/workdflows/reusable.ymln@main
+    with:
+      param: 5.0.x
