@@ -20,6 +20,6 @@ jobs:
       
   reuse:
     needs: [ main ]
-    uses: ./.github/workflows/reusable.ymln@main
+    uses: ./.github/workflows/reusable.yml@main
     with:
       param: 5.0.x
