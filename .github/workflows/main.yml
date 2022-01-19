@@ -10,16 +10,33 @@ env:
 jobs:
   main:
     runs-on: ubuntu-latest
+    outputs:
+      dot-version: ${{ steps.store.outputs.dot-version }}
     
     steps:
     - name: checkout
       uses: actions/checkout@v2
       
     - name: print
-      run: echo DOTNET_VERSION=${{env.DOTNET_VERSION}}
+      run: |
+        echo DOTNET_VERSION=${{env.DOTNET_VERSION}}
+        echo version=${DOTNET_VERSION}
+        echo version=$DOTNET_VERSION
       
-  reuse:
+    - name: store
+      id: store
+      run: echo "::set-output name=dot-version::${{env.DOTNET_VERSION}}"
+      
+  test:
+    needs: [ main ]
+    runs-on: ubuntu:latest
+    steps:
+    - name: print
+      run: echo from last step ${{needs.main.outputs.dot-version}}
+      
+  reuse:  
     needs: [ main ]
     uses: tjcorr/variable-to-reusable-workflow/.github/workflows/reusable.yml@main
     with:
-      param: ${{env.DOTNET_VERSION}}
+      param: ${{needs.main.outputs.dot-version}}
+      #param: ${{env.DOTNET_VERSION}}
