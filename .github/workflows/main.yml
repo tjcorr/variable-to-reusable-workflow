@@ -36,6 +36,8 @@ jobs:
 
   cd:
     needs: []
+    env:
+      blah: ${{env.DOTNET_VERSION}}
     runs-on: ubuntu-latest
     steps:
     - name: mkdir
